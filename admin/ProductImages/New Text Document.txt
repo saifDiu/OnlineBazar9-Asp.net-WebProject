@@ -1,0 +1,75 @@
+<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Student.aspx.cs" Inherits="ClassPracticeweb.Student" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <h1 align="center">Student Page</h1>
+    <table bgcolor="#00FF00" align="center">
+        <tr>
+            <td>ID 
+            </td>
+            <td>
+                <asp:TextBox ID="tbxstudID" runat="server" required></asp:TextBox>
+            </td>
+
+        </tr>
+        <tr>
+            <td>Name
+            </td>
+            <td>
+                <asp:TextBox ID="tbxname" runat="server" required></asp:TextBox>
+            </td>
+
+        </tr>
+        <tr>
+            <td>Semester 
+            </td>
+            <td>
+                <asp:TextBox ID="tbxsem" runat="server" required></asp:TextBox>
+            </td>
+
+        </tr>
+        <tr>
+            <td>Cgpa
+            </td>
+            <td>
+                <asp:TextBox ID="tbxgpa" runat="server" required></asp:TextBox>
+            </td>
+
+        </tr>
+        <tr>
+            <td>
+
+            </td>
+            <td>
+            <asp:Button ID="btnSave" runat="server" Text="Save" BackColor="#00ff00" OnClick="btnSave_Click" />
+            </td>
+        
+    </table>
+    <br />
+    <asp:GridView ID="GridView1" runat="server" BackColor="#DEBA84" BorderColor="#DEBA84" BorderStyle="None" BorderWidth="1px" CellPadding="3" CellSpacing="2" AutoGenerateColumns="False" DataKeyNames="ID" >
+        <Columns>
+            <asp:BoundField DataField="ID" HeaderText="ID" SortExpression="ID" ReadOnly="True" />
+            <asp:BoundField DataField="Name" HeaderText="Name" SortExpression="Name" />
+            <asp:BoundField DataField="Semester" HeaderText="Semester" SortExpression="Semester" />
+            <asp:BoundField DataField="Cgpa" HeaderText="Cgpa" SortExpression="Cgpa" />
+            <asp:TemplateField>
+                <ItemTemplate>
+                    <asp:Button runat="server" ID="btndelete" Text="Delete" CommandArgument='<%# Eval("ID") %>' OnCommand="btnDelete_Command" />
+                </ItemTemplate>
+            </asp:TemplateField>
+        </Columns>
+        <FooterStyle BackColor="#F7DFB5" ForeColor="#8C4510" />
+        <HeaderStyle BackColor="#A55129" Font-Bold="True" ForeColor="White" />
+        <PagerStyle ForeColor="#8C4510" HorizontalAlign="Center" />
+        <RowStyle BackColor="#FFF7E7" ForeColor="#8C4510" />
+        <SelectedRowStyle BackColor="#738A9C" Font-Bold="True" ForeColor="White" />
+        <SortedAscendingCellStyle BackColor="#FFF1D4" />
+        <SortedAscendingHeaderStyle BackColor="#B95C30" />
+        <SortedDescendingCellStyle BackColor="#F1E5CE" />
+        <SortedDescendingHeaderStyle BackColor="#93451F" />
+    </asp:GridView>
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:UniversitySystemConnectionString %>" SelectCommand="SELECT * FROM [Admission] ORDER BY [ID]"></asp:SqlDataSource>
+    <br />
+
+</asp:Content>
